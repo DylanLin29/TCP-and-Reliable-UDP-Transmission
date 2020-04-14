@@ -13,13 +13,13 @@ def server_is_valid(serverName, serverPort):
     except ValueError:
         return False
     # actual test to see if the server is on
-    try:
-        clientSocket.settimeout(0.5)
-        clientSocket = socket.socket(AF_INET, SOCK_STREAM)
-        clientSocket.connect((serverName, serverPort))
-        clientSocket.settimeout(None)
-    except:
-        return False
+    # try:
+    #     clientSocket = socket.socket(AF_INET, SOCK_STREAM)
+    #     clientSocket.settimeout(0.5)
+    #     clientSocket.connect((serverName, serverPort))
+    #     clientSocket.settimeout(None)
+    # except:
+    #     return False
     return True
 
 def clientSocket_receive_response(clientSocket):
@@ -57,13 +57,13 @@ def main():
         exit()
     
     # Store the data in local file
-    if command[-1] == '>':
-        command = command[:-1]
-    elif '>' in command:
-        filename = command.split('>')[-1].strip(' ')
-    else:
+    if command[-1] == '>' or '>' not in command:
+        if command[-1] == '>':
+            command = command[:-1]
         filename = command.split()[0] + '_cmd.txt'
-    
+    else:
+        filename = command.split('>')[-1].strip(' ')
+        
     f = open(filename, 'w')
     f.write(message)
     print('File ', filename, ' successfuly saved')
