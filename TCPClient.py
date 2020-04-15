@@ -12,14 +12,6 @@ def server_is_valid(serverName, serverPort):
         ipaddress.ip_address(serverName)
     except ValueError:
         return False
-    # actual test to see if the server is on
-    # try:
-    #     clientSocket = socket.socket(AF_INET, SOCK_STREAM)
-    #     clientSocket.settimeout(0.5)
-    #     clientSocket.connect((serverName, serverPort))
-    #     clientSocket.settimeout(None)
-    # except:
-    #     return False
     return True
 
 def clientSocket_receive_response(clientSocket):
