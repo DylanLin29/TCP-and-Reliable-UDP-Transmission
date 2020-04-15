@@ -1,6 +1,0 @@
-TCPClient.py
-TCPServer.py
-__pycache__
-ls_cmd.txt
-test.py
-test_TCPServer.py
